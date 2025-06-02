@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+build_flag="--release"
+open_result=false
+
+help_info() {
+  echo "Usage: ${0##*/} [-d] [-o]\n" \
+       "Build a macOS application bundle for the Saya example."\n\
+       "  -d    Build in debug mode"\n\
+       "  -o    Open the resulting app when done"\n"
+}
+
+while getopts 'do?h' flag; do
+  case "${flag}" in
+    d) build_flag="";;
+    o) open_result=true;;
+    h|\?) help_info; exit 0;;
+  esac
+done
+
+shift $((OPTIND-1))
+
+target_dir="release"
+if [[ -z "$build_flag" ]]; then
+  target_dir="debug"
+fi
+
+cargo_bundle_version=$(cargo -q bundle --help 2>&1 | head -n 1 || echo "")
+if [ "$cargo_bundle_version" != "cargo-bundle v0.6.1-zed" ]; then
+    cargo install cargo-bundle --git https://github.com/zed-industries/cargo-bundle.git --branch zed-deploy
+fi
+
+echo "Building Saya (${target_dir} mode)"
+cargo build ${build_flag} --package saya
+
+echo "Creating application bundle"
+app_path=$(cargo bundle ${build_flag} --package saya --select-workspace-root | xargs)
+
+echo "Bundled ${app_path}"
+
+if [ "$open_result" = true ]; then
+  open "$app_path"
+fi

@@ -434,6 +434,19 @@ Example configuration for using X.ai Grok with Zed:
   }
 ```
 
+#### OpenRouter
+
+To route requests through [OpenRouter](https://openrouter.ai) reuse the OpenAI provider with a custom `api_url`.
+Provide your OpenRouter key via `OPENAI_API_KEY`:
+
+```json
+  "language_models": {
+    "openai": {
+      "api_url": "https://openrouter.ai/api/v1"
+    }
+  }
+```
+
 ## Advanced Configuration {#advanced-configuration}
 
 ### Custom Provider Endpoints {#custom-provider-endpoint}
