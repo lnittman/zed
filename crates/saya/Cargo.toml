@@ -16,4 +16,6 @@ path = "src/main.rs"
 gpui.workspace = true
 gpui_tokio.workspace = true
 open_ai.workspace = true
+assets.workspace = true
+ui.workspace = true
 workspace-hack.workspace = true
