@@ -54,3 +54,40 @@ Include only text inside <scene> tags.
 ```
 
 Structured responses keep the game logic small while allowing the model to improvise.
+
+## Running Saya Locally
+
+1. Set your OpenRouter API key in the `OPENAI_API_KEY` environment variable.
+2. Point the OpenAI provider to OpenRouter by adding this to `~/.config/zed/settings.json`:
+
+```json
+{
+  "language_models": {
+    "openai": { "api_url": "https://openrouter.ai/api/v1" }
+  }
+}
+```
+
+3. Launch the game with:
+
+```bash
+cargo run -p saya
+```
+
+Use `--release` for an optimized build:
+
+```bash
+cargo run -p saya --release
+```
+
+The compiled binary will appear in `target/release/` and can be run directly.
+
+4. To bundle a macOS `.app`, run the bundling script:
+
+```bash
+./script/bundle-mac Saya
+```
+
+This produces an application bundle you can copy to `/Applications`.
+
+OpenRouter's API is compatible with OpenAI's, so the [`open_ai`](../../crates/open_ai) client is reused. Pointing its `api_url` to OpenRouter is all that's required—no separate crate is needed.
