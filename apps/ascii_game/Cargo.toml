@@ -1,0 +1,19 @@
+[package]
+name = "ascii_game"
+version = "0.1.0"
+edition.workspace = true
+publish.workspace = true
+license = "GPL-3.0-or-later"
+
+[lints]
+workspace = true
+
+[[bin]]
+name = "ascii_game"
+path = "src/main.rs"
+
+[dependencies]
+gpui.workspace = true
+gpui_tokio.workspace = true
+open_ai.workspace = true
+workspace-hack.workspace = true
