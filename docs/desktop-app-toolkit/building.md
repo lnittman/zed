@@ -15,3 +15,11 @@ docker compose up -d
 ```
 
 Similar instructions exist for Linux and Windows. Consult the [`macos.md`](../../docs/src/development/macos.md) and other platform docs for troubleshooting tips.
+
+On macOS you can generate a signed application bundle using:
+
+```bash
+./script/bundle-mac <AppName>
+```
+
+The resulting `.app` will be placed in `target/release/` by default.
