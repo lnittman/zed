@@ -18,6 +18,19 @@ This example project demonstrates building a lightweight desktop game named **Sa
 +-------------------------------+
 ```
 
+## Updated Layout
+
+The interface focuses on a viewport that renders ASCII art from the AI. Below
+the viewport are four buttons representing the actions the player can take.
+
+```text
++-----------------------------------+
+| ~ scene text here ~               |
+|                                   |
+| [1] [2] [3] [4]                   |
++-----------------------------------+
+```
+
 ## Prompt Template
 
 ```text
